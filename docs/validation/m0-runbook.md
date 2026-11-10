@@ -10,6 +10,13 @@ Use a Mac running macOS 13 or later and Swift 6.0 or later. macOS 13 is only the
 xcode-select --install
 ```
 
+Get the reviewed development branch in a separate test directory:
+
+```sh
+git clone --single-branch --branch feat/core-and-feasibility https://github.com/AmKovylyaev/NiceSwitcher.git NiceSwitcher-test
+cd NiceSwitcher-test
+```
+
 From the repository root, record the toolchain and run the portable checks:
 
 ```sh
