@@ -86,6 +86,7 @@ public enum LayoutConverter {
     public static func convert(_ token: TypedToken, from source: LayoutProfile, to target: LayoutProfile) -> String? {
         guard !token.sourceID.isEmpty,
               token.sourceID == source.sourceID,
+              source.sourceID != target.sourceID,
               !token.text.isEmpty,
               token.text.count <= CoreLimits.maximumTokenGraphemes,
               token.text.unicodeScalars.count <= CoreLimits.maximumContextScalars,

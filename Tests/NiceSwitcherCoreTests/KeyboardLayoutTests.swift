@@ -44,6 +44,21 @@ final class KeyboardLayoutTests: XCTestCase {
         XCTAssertNil(LayoutConverter.convert(token, from: FixtureLayouts.us, to: FixtureLayouts.ru))
     }
 
+    func testAbstainsWhenSourceAndTargetIDsMatchButMappingsDiffer() throws {
+        let stroke = FixtureLayouts.g
+        let source = try LayoutProfile(sourceID: FixtureLayouts.usSourceID, outputs: [stroke: "g"])
+        let targetWithSameID = try LayoutProfile(sourceID: FixtureLayouts.usSourceID, outputs: [stroke: "п"])
+        let token = TypedToken(text: "g", sourceID: FixtureLayouts.usSourceID, strokes: [stroke])
+
+        XCTAssertNil(LayoutConverter.convert(token, from: source, to: targetWithSameID))
+    }
+
+    func testAbstainsWhenConvertingATokenBackToTheSameProfile() {
+        let token = TypedToken(text: "g", sourceID: FixtureLayouts.usSourceID, strokes: [FixtureLayouts.g])
+
+        XCTAssertNil(LayoutConverter.convert(token, from: FixtureLayouts.us, to: FixtureLayouts.us))
+    }
+
     func testRejectsMissingStrokeOutput() {
         let missing = KeyStroke(keyCode: 99, modifiers: [])
         let token = TypedToken(text: "g?", sourceID: FixtureLayouts.usSourceID, strokes: [FixtureLayouts.g, missing])
