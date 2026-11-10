@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "license": "MIT",
+  "authoredBy": "NiceSwitcher M1 implementation",
+  "origin": "Original synthetic bootstrap examples, fixture keyboard output tables, and a small hand-authored lexicon. No user text or third-party corpora, dictionaries, or keyboard tables are included.",
+  "heldOutPolicy": "Tuning and held-out records use disjoint IDs, group IDs, and normalized lexical forms. The hand-authored baseline lexicon was fixed before the first held-out CLI evaluation.",
+  "resources": [
+    {
+      "path": "Data/Corpus/tuning.jsonl",
+      "origin": "Original synthetic author-created examples",
+      "license": "MIT"
+    },
+    {
+      "path": "Data/Corpus/held-out.jsonl",
+      "origin": "Original synthetic author-created examples; contains the predeclared Tim to Ешь hard negative",
+      "license": "MIT"
+    },
+    {
+      "path": "Data/Layouts/fixtures.json",
+      "origin": "Original synthetic output fixtures keyed by physical key code and modifiers; not verified Apple maps",
+      "license": "MIT"
+    },
+    {
+      "path": "Data/Lexicon/baseline.json",
+      "origin": "Original small author-created demonstration lexicon",
+      "license": "MIT"
+    }
+  ],
+  "thirdPartyResources": []
+}

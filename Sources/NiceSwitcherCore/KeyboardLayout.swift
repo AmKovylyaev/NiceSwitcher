@@ -21,13 +21,68 @@ public struct KeyModifiers: OptionSet, Hashable, Sendable {
     }
 }
 
-public struct KeyStroke: Hashable, Sendable {
+public struct KeyStroke: Hashable, Codable, Sendable {
     public let keyCode: UInt16
     public let modifiers: KeyModifiers
 
     public init(keyCode: UInt16, modifiers: KeyModifiers = []) {
         self.keyCode = keyCode
         self.modifiers = modifiers
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case keyCode
+        case modifiers
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        keyCode = try container.decode(UInt16.self, forKey: .keyCode)
+        let names = try container.decode([String].self, forKey: .modifiers)
+        var decodedModifiers: KeyModifiers = []
+        for name in names {
+            let modifier: KeyModifiers
+            switch name {
+            case "shift": modifier = .shift
+            case "capsLock": modifier = .capsLock
+            case "option": modifier = .option
+            case "command": modifier = .command
+            case "control": modifier = .control
+            default:
+                throw DecodingError.dataCorruptedError(
+                    forKey: .modifiers,
+                    in: container,
+                    debugDescription: "Unknown modifier: \(name)"
+                )
+            }
+            guard !decodedModifiers.contains(modifier) else {
+                throw DecodingError.dataCorruptedError(
+                    forKey: .modifiers,
+                    in: container,
+                    debugDescription: "Duplicate modifier: \(name)"
+                )
+            }
+            decodedModifiers.insert(modifier)
+        }
+        modifiers = decodedModifiers
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        guard !modifiers.hasUnknownBits else {
+            throw EncodingError.invalidValue(
+                self,
+                EncodingError.Context(codingPath: encoder.codingPath, debugDescription: "Cannot encode unknown key modifier bits")
+            )
+        }
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(keyCode, forKey: .keyCode)
+        var names: [String] = []
+        if modifiers.contains(.shift) { names.append("shift") }
+        if modifiers.contains(.capsLock) { names.append("capsLock") }
+        if modifiers.contains(.option) { names.append("option") }
+        if modifiers.contains(.command) { names.append("command") }
+        if modifiers.contains(.control) { names.append("control") }
+        try container.encode(names, forKey: .modifiers)
     }
 }
 

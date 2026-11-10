@@ -1,6 +1,6 @@
 import Foundation
 
-public enum TokenSurface: Equatable, Sendable {
+public enum TokenSurface: String, Codable, Equatable, Sendable {
     case plainText
     case code
     case address
