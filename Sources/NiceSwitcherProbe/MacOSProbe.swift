@@ -84,7 +84,7 @@ enum MacOSProbe {
         CFGetTypeID(focusedValue) == AXUIElementGetTypeID() else {
             return nil
         }
-        let focusedElement = unsafeBitCast(focusedValue, to: AXUIElement.self)
+        let focusedElement = unsafeDowncast(focusedValue, to: AXUIElement.self)
 
         let role = stringAttribute(kAXRoleAttribute, on: focusedElement)
         let subrole = stringAttribute(kAXSubroleAttribute, on: focusedElement)
@@ -167,7 +167,7 @@ enum MacOSProbe {
               CFGetTypeID(value) == AXValueGetTypeID() else {
             return nil
         }
-        let axValue = unsafeBitCast(value, to: AXValue.self)
+        let axValue = unsafeDowncast(value, to: AXValue.self)
         guard AXValueGetType(axValue) == .cfRange else { return nil }
         var range = CFRange(location: 0, length: 0)
         guard AXValueGetValue(axValue, .cfRange, &range) else { return nil }
