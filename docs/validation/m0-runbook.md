@@ -64,9 +64,44 @@ After each accepted write, observe the edited field and exercise the editor's ow
 3. Continue typing after the replacement, then undo the new typing and the replacement separately.
 4. Repeat Undo/Redo from the editor menus, after waiting more than 30 seconds, after switching windows, and after the CLI process has exited.
 5. Repeat in each target field from the compatibility matrix, including formatted text and a selection next to an emoji where applicable.
+6. For U7, undo the candidate replacement, make a new independent edit, then verify the editor's normal branch behavior clears or updates Redo as expected. Record the exact sequence and result.
+7. For U8, make two candidate replacements, C1 and C2, in separate synthetic words with an ordinary edit B between them. Undo in the order C2, B, C1; Redo in the order C1, B, C2. Verify each action is separate, ordered correctly, and not repeated.
 
 The probe cannot report whether Undo or Redo was observed, cannot correlate a later edit with its change, and cannot establish that the write became one editor history operation. Only a human's recorded observation can fill those matrix cells in this milestone. Never enter or send real form, email, or chat content during these checks.
 
 ## Record results
 
-Use only `not_run`, `pass`, `fail`, or `blocked` in the matrix. `pass` requires the actual manual steps and recorded evidence for that specific app and field; an exit code of zero or a visually correct replacement is not sufficient. Distinguish the human observation of C (the candidate replacement) versus B (a later ordinary edit) from machine feedback availability. A successful AX call remains `write_accepted_unverified`, never `undo_passed`.
+For each app and field, fill a separate copy of this template. Use only `not_run`, `pass`, `fail`, or `blocked` for each status. `pass` requires the actual manual steps and recorded evidence for that specific app and field; an exit code of zero or a visually correct replacement is not sufficient. Distinguish the human observation of C (the candidate replacement) versus B (a later ordinary edit) from machine feedback availability. A successful AX call remains `write_accepted_unverified`, never `undo_passed`.
+
+```text
+Surface:
+macOS build:
+SDK:
+App version:
+Field type:
+Mechanism:
+Evidence location (synthetic-only):
+
+U1: not_run — evidence:
+U2: not_run — evidence:
+U3: not_run — evidence:
+U4: not_run — evidence:
+U5: not_run — evidence:
+U6: not_run — evidence:
+U7: not_run — evidence:
+U8: not_run — evidence:
+U9: not_run — evidence:
+U10: not_run — evidence:
+S1: not_run — evidence:
+S3: not_run — evidence:
+S5: not_run — evidence:
+Human observation of C vs B: not_run — evidence:
+Machine feedback for C/B: not_run — available/unavailable/unknown and evidence:
+Redo: not_run — evidence:
+Undo/Redo menu: not_run — evidence:
+Manual correction: not_run — evidence:
+
+Aggregate U1–U10 status: not_run
+```
+
+Only set the aggregate U1–U10 matrix cell to `pass` when all ten individual U cases above are `pass` with evidence for the same app, version, and field. Any `fail`, `blocked`, or `not_run` case prevents an aggregate `pass`.

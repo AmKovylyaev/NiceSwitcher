@@ -22,4 +22,6 @@ No live macOS editor test has been run in this environment. Every behavior cell 
 | Chrome — ChatGPT field | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_recorded | not_recorded | not_recorded | chat field | AXSelectedText candidate; not_run | none |
 | Native ChatGPT for macOS — composer | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_run | not_recorded | not_recorded | not_recorded | chat composer | AXSelectedText candidate; not_run | none |
 
+The U1–U10 cell is an aggregate: mark it `pass` only when all ten cases have individual `pass` statuses and evidence in the per-run template in the runbook for that same app/version/field. Any missing, blocked, or failed case keeps the aggregate from passing.
+
 The matrix covers only the AX selected-text candidate. It does not test input methods or another integration mechanism, and it does not prove R8, undo observation, production safety, or compatibility beyond the exact recorded OS/app/field combination.
