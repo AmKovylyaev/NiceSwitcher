@@ -1,23 +1,23 @@
-# M0 macOS live-test runbook
+# M0: инструкция по проверке на macOS
 
-This runbook covers a manual research probe for one selected synthetic word. It does not install an input method, background service, or system permission, and it does not automate selection or observe subsequent typing.
+Эта инструкция описывает ручную проверку исследовательского стенда на одном выделенном тестовом слове. Стенд не устанавливает метод ввода, фоновую службу или системные разрешения, не выделяет текст автоматически и не наблюдает за последующим вводом.
 
-## Prepare the Mac
+## Подготовьте Mac
 
-Use a Mac running macOS 13 or later and Swift 6.0 or later. macOS 13 is only the probe's deployment floor; it does not guarantee that installed Command Line Tools include Swift 6. Install or update Xcode Command Line Tools yourself if needed:
+Нужны macOS 13 или новее и Swift 6.0 или новее. macOS 13 — лишь минимальная версия системы для запуска стенда: она не гарантирует, что установленные Command Line Tools содержат Swift 6. При необходимости самостоятельно установите или обновите Xcode Command Line Tools:
 
 ```sh
 xcode-select --install
 ```
 
-Get the reviewed development branch in a separate test directory:
+Склонируйте проверенную ветку разработки в отдельную тестовую папку:
 
 ```sh
 git clone --single-branch --branch feat/core-and-feasibility https://github.com/AmKovylyaev/NiceSwitcher.git NiceSwitcher-test
 cd NiceSwitcher-test
 ```
 
-From the repository root, record the toolchain and run the portable checks:
+В корне репозитория проверьте версию инструментов, запустите тесты и соберите программу:
 
 ```sh
 swift --version
@@ -26,89 +26,98 @@ swift build
 swift build -c release
 ```
 
-The probe requires Accessibility access. If the CLI reports that access is unavailable, add the executable that you are running to **System Settings → Privacy & Security → Accessibility** yourself, then retry. The probe never changes this permission. On Linux, the CLI exits with an unsupported-platform error and performs no AX operation.
+Стенду требуется доступ к функциям универсального доступа (Accessibility). Если программа сообщает, что доступа нет, самостоятельно добавьте запускаемый исполняемый файл в **Системные настройки → Конфиденциальность и безопасность → Универсальный доступ**, затем повторите запуск. Стенд сам не меняет это разрешение. На Linux программа завершается с ошибкой неподдерживаемой платформы и не выполняет операций Accessibility.
 
-## Inspect one field
+## Проверьте одно поле
 
-Open a plain, unsaved note or another disposable editor field. Type only the synthetic text `ghbdtn`, select exactly those six letters, and leave the target application frontmost. Do not use a password field, a saved document, a form, or a message you might send.
+Откройте отдельную тестовую заметку или другое поле редактора, содержимое которого можно удалить. Введите только тестовое слово `ghbdtn`, выделите ровно эти шесть букв и оставьте нужное приложение активным. Не используйте поле пароля, рабочий документ, форму или сообщение, которое можете отправить.
 
-From Terminal, run the command below, then switch back to the target application within five seconds so it is frontmost when the probe checks it:
+В Терминале выполните команду ниже, затем в течение пяти секунд вернитесь в проверяемое приложение: в момент проверки оно должно быть активным.
 
 ```sh
 .build/release/NiceSwitcherProbe inspect --bundle-id com.apple.Notes --delay 5
 ```
 
-Replace `com.apple.Notes` with the exact bundle ID of the test application. `inspect` prints only role, subrole, enabled/secure state, and the fact that selection content was not read. It does not read selected text or change the field.
+Если проверяете другое приложение, замените `com.apple.Notes` его точным идентификатором пакета — bundle ID. Команда `inspect` выводит только роль и подроль поля, признаки доступности и защищённого ввода, а также отметку о том, что содержимое выделения не читалось. Она не читает выделенный текст и не меняет поле.
 
-## Attempt one synthetic replacement
+## Выполните одну тестовую замену
 
-Return to the disposable field, select only `ghbdtn` again, then run:
+Вернитесь в тестовое поле, снова выделите только `ghbdtn`, затем выполните:
 
 ```sh
 .build/release/NiceSwitcherProbe replace-selected --bundle-id com.apple.Notes --expected ghbdtn --replacement привет --delay 5
 ```
 
-Switch back to the target app within the delay. A zero exit code prints `status=write_accepted_unverified`: the Accessibility API accepted one write to `AXSelectedText`. The command never prints selected text. An unknown or unsafe field, permission failure, app/focus change, or mismatched selection exits nonzero before the write. If the AX write itself does not report success, the text state may be unknown; check the field manually before considering another attempt. The CLI never retries. A local recheck and the write are not an atomic transaction.
+До истечения задержки вернитесь в проверяемое приложение. При нулевом коде завершения выводится `status=write_accepted_unverified`: API Accessibility принял одну попытку записи в `AXSelectedText`. Выделенный текст программа не выводит.
 
-The probe does not select text, send keystrokes, use the clipboard, read the whole document, or observe what happens after it exits. It queries selected text only for the explicit replacement attempt, after confirming a known enabled text field, a non-secure subrole, and inactive secure input. It then requires exact UTF-16 content, a valid UTF-16 range, the requested bundle ID, and writable `AXSelectedText`.
+Если поле неизвестно или небезопасно, нет разрешения, изменилось приложение или фокус либо выделение не совпало с ожидаемым, программа завершается с ненулевым кодом до записи. Если сам AX-вызов записи не сообщил об успехе, фактическое состояние текста может быть неизвестно: проверьте поле вручную, прежде чем повторять попытку. Автоматических повторов нет. Повторная проверка состояния и последующая запись не образуют атомарную операцию.
 
-Switching between Terminal and the target, selecting text, or moving focus may change how an editor groups native Undo operations. A manually selected-word replacement is exploratory evidence only; it does not prove that an automatic in-place correction would group the same way. To reduce this disturbance, start the CLI first with a 15-second delay, then type and select only `ghbdtn` in the target app and keep focus there until it runs:
+Стенд не выделяет текст, не имитирует нажатия клавиш, не использует буфер обмена, не читает документ целиком и не наблюдает за событиями после своего завершения. Выделенный текст запрашивается только для явно заданной попытки замены — после проверки того, что это известное доступное текстовое поле с незащищённой подролью и без активного защищённого ввода. Затем проверяются точное совпадение содержимого в UTF-16, корректность диапазона выделения в UTF-16, нужный bundle ID и возможность записи в `AXSelectedText`.
+
+Переключение между Терминалом и редактором, выделение текста и смена фокуса могут менять группировку штатных операций отмены. Поэтому замена вручную выделенного слова даёт лишь предварительные сведения: она не доказывает, что будущая автоматическая коррекция будет группироваться так же. Чтобы уменьшить влияние переключений, сначала запустите команду с задержкой 15 секунд, затем введите и выделите только `ghbdtn` в проверяемом приложении и оставайтесь в нём до выполнения команды:
 
 ```sh
 .build/release/NiceSwitcherProbe replace-selected --bundle-id com.apple.Notes --expected ghbdtn --replacement привет --delay 15
 ```
 
-Compare Undo grouping with ordinary typing in that same editor and field. Record this procedure separately from the five-second launch-and-switch trial. Choosing the eventual production correction mechanism remains open until the M0 evidence is reviewed.
+Сравните группировку отмены с обычным вводом в том же редакторе и поле. Запишите результат этого сценария отдельно от запуска с пятисекундной задержкой и переключением приложений. Окончательный механизм коррекции выбирается после проверки результатов M0.
 
-## Check Undo and Redo manually
+## Проверьте отмену и повтор вручную
 
-Record the application, field type, macOS build, SDK, app version, and that the mechanism was `AXSelectedText`. Keep evidence limited to synthetic text and observations; save any report under ignored `artifacts/`.
+Запишите приложение, тип поля, номер сборки macOS, SDK, версию приложения и использованный механизм — `AXSelectedText`. В результатах должны быть только тестовый текст и наблюдения. Сохраняйте отчёты в папке `artifacts/`, исключённой из Git.
 
-After each accepted write, observe the edited field and exercise the editor's own controls. At minimum, test:
+После каждой принятой попытки записи проверьте поле и штатные команды редактора. Как минимум выполните следующие проверки:
 
-1. ⌘Z restores exactly `ghbdtn`; a second ⌘Z undoes the preceding editor action rather than changing unrelated text.
-2. ⇧⌘Z restores the preceding action and then the replacement, with no duplicate replacement.
-3. Continue typing after the replacement, then undo the new typing and the replacement separately.
-4. Repeat Undo/Redo from the editor menus, after waiting more than 30 seconds, after switching windows, and after the CLI process has exited.
-5. Repeat in each target field from the compatibility matrix, including formatted text and a selection next to an emoji where applicable.
-6. For U7, undo the candidate replacement, make a new independent edit, then verify the editor's normal branch behavior clears or updates Redo as expected. Record the exact sequence and result.
-7. For U8, make two candidate replacements, C1 and C2, in separate synthetic words with an ordinary edit B between them. Undo in the order C2, B, C1; Redo in the order C1, B, C2. Verify each action is separate, ordered correctly, and not repeated.
+1. ⌘Z возвращает ровно `ghbdtn`; второе ⌘Z отменяет предыдущее действие редактора, не затрагивая посторонний текст.
+2. ⇧⌘Z восстанавливает предыдущее действие, затем замену, без её дублирования.
+3. После замены продолжите печатать, затем отдельно отмените новый ввод и саму замену.
+4. Повторите отмену и повтор через меню редактора, после ожидания более 30 секунд, после переключения окон и после завершения процесса стенда.
+5. Повторите проверки для каждого целевого поля из матрицы совместимости, включая форматированный текст и выделение рядом с emoji, где это применимо.
+6. Для U7 отмените тестовую замену, внесите новую независимую правку и проверьте, что история повтора очищается или меняется по обычным правилам редактора. Запишите точную последовательность и результат.
+7. Для U8 выполните две тестовые замены — C1 и C2 — в разных словах, с обычной правкой B между ними. Отмените действия в порядке C2, B, C1; повторите в порядке C1, B, C2. Убедитесь, что каждое действие выполняется отдельно, в правильном порядке и без дублирования.
 
-The probe cannot report whether Undo or Redo was observed, cannot correlate a later edit with its change, and cannot establish that the write became one editor history operation. Only a human's recorded observation can fill those matrix cells in this milestone. Never enter or send real form, email, or chat content during these checks.
+Стенд не определяет, произошла ли отмена или повтор, не связывает последующую правку со своей заменой и не устанавливает, стала ли запись отдельной операцией в истории редактора. На этом этапе соответствующие ячейки матрицы заполняются только по записанным наблюдениям человека. Во время проверок не вводите и не отправляйте реальные данные форм, писем или чатов.
 
-## Record results
+## Запишите результаты
 
-For each app and field, fill a separate copy of this template. Use only `not_run`, `pass`, `fail`, or `blocked` for each status. `pass` requires the actual manual steps and recorded evidence for that specific app and field; an exit code of zero or a visually correct replacement is not sufficient. Distinguish the human observation of C (the candidate replacement) versus B (a later ordinary edit) from machine feedback availability. A successful AX call remains `write_accepted_unverified`, never `undo_passed`.
+Для каждого приложения и типа поля заполните отдельную копию шаблона ниже. Используйте только четыре значения статуса:
+
+- `not_run` — проверка не проводилась;
+- `pass` — проверка пройдена;
+- `fail` — проверка выявила нарушение;
+- `blocked` — провести проверку помешало ограничение.
+
+Для `pass` нужны фактически выполненные ручные действия и записанное подтверждение для конкретного приложения и поля. Нулевого кода завершения или визуально правильной замены недостаточно. Разделяйте наблюдение человека за C — тестовой заменой — и B — последующей обычной правкой — и возможность программы достоверно распознать эти события. Успешный AX-вызов по-прежнему имеет статус `write_accepted_unverified`, а не `undo_passed`.
 
 ```text
-Surface:
-macOS build:
+Проверяемое приложение и поле:
+Сборка macOS:
 SDK:
-App version:
-Field type:
-Mechanism:
-Evidence location (synthetic-only):
+Версия приложения:
+Тип поля:
+Механизм:
+Где сохранены подтверждения (только тестовые данные):
 
-U1: not_run — evidence:
-U2: not_run — evidence:
-U3: not_run — evidence:
-U4: not_run — evidence:
-U5: not_run — evidence:
-U6: not_run — evidence:
-U7: not_run — evidence:
-U8: not_run — evidence:
-U9: not_run — evidence:
-U10: not_run — evidence:
-S1: not_run — evidence:
-S3: not_run — evidence:
-S5: not_run — evidence:
-Human observation of C vs B: not_run — evidence:
-Machine feedback for C/B: not_run — available/unavailable/unknown and evidence:
-Redo: not_run — evidence:
-Undo/Redo menu: not_run — evidence:
-Manual correction: not_run — evidence:
+U1: not_run — подтверждение:
+U2: not_run — подтверждение:
+U3: not_run — подтверждение:
+U4: not_run — подтверждение:
+U5: not_run — подтверждение:
+U6: not_run — подтверждение:
+U7: not_run — подтверждение:
+U8: not_run — подтверждение:
+U9: not_run — подтверждение:
+U10: not_run — подтверждение:
+S1: not_run — подтверждение:
+S3: not_run — подтверждение:
+S5: not_run — подтверждение:
+Наблюдение человека за C и B: not_run — подтверждение:
+Программное распознавание C/B: not_run — доступно/недоступно/неизвестно и подтверждение:
+Повтор: not_run — подтверждение:
+Отмена/повтор через меню: not_run — подтверждение:
+Ручное исправление: not_run — подтверждение:
 
-Aggregate U1–U10 status: not_run
+Общий статус U1–U10: not_run
 ```
 
-Only set the aggregate U1–U10 matrix cell to `pass` when all ten individual U cases above are `pass` with evidence for the same app, version, and field. Any `fail`, `blocked`, or `not_run` case prevents an aggregate `pass`.
+Устанавливайте общий статус `pass` для U1–U10 только тогда, когда все десять отдельных проверок имеют статус `pass` с подтверждениями для того же приложения, версии и типа поля. Любой `fail`, `blocked` или `not_run` исключает общий статус `pass`.
