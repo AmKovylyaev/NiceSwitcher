@@ -1,0 +1,906 @@
+{
+  "layouts": [
+    {
+      "sourceID": "fixture.us",
+      "entries": [
+        {
+          "keyCode": 12,
+          "modifiers": [],
+          "text": "q"
+        },
+        {
+          "keyCode": 12,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Q"
+        },
+        {
+          "keyCode": 13,
+          "modifiers": [],
+          "text": "w"
+        },
+        {
+          "keyCode": 13,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "W"
+        },
+        {
+          "keyCode": 14,
+          "modifiers": [],
+          "text": "e"
+        },
+        {
+          "keyCode": 14,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "E"
+        },
+        {
+          "keyCode": 15,
+          "modifiers": [],
+          "text": "r"
+        },
+        {
+          "keyCode": 15,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "R"
+        },
+        {
+          "keyCode": 17,
+          "modifiers": [],
+          "text": "t"
+        },
+        {
+          "keyCode": 17,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "T"
+        },
+        {
+          "keyCode": 16,
+          "modifiers": [],
+          "text": "y"
+        },
+        {
+          "keyCode": 16,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Y"
+        },
+        {
+          "keyCode": 32,
+          "modifiers": [],
+          "text": "u"
+        },
+        {
+          "keyCode": 32,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "U"
+        },
+        {
+          "keyCode": 34,
+          "modifiers": [],
+          "text": "i"
+        },
+        {
+          "keyCode": 34,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "I"
+        },
+        {
+          "keyCode": 31,
+          "modifiers": [],
+          "text": "o"
+        },
+        {
+          "keyCode": 31,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "O"
+        },
+        {
+          "keyCode": 35,
+          "modifiers": [],
+          "text": "p"
+        },
+        {
+          "keyCode": 35,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "P"
+        },
+        {
+          "keyCode": 33,
+          "modifiers": [],
+          "text": "["
+        },
+        {
+          "keyCode": 33,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "["
+        },
+        {
+          "keyCode": 30,
+          "modifiers": [],
+          "text": "]"
+        },
+        {
+          "keyCode": 30,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "]"
+        },
+        {
+          "keyCode": 0,
+          "modifiers": [],
+          "text": "a"
+        },
+        {
+          "keyCode": 0,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "A"
+        },
+        {
+          "keyCode": 1,
+          "modifiers": [],
+          "text": "s"
+        },
+        {
+          "keyCode": 1,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "S"
+        },
+        {
+          "keyCode": 2,
+          "modifiers": [],
+          "text": "d"
+        },
+        {
+          "keyCode": 2,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "D"
+        },
+        {
+          "keyCode": 3,
+          "modifiers": [],
+          "text": "f"
+        },
+        {
+          "keyCode": 3,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "F"
+        },
+        {
+          "keyCode": 5,
+          "modifiers": [],
+          "text": "g"
+        },
+        {
+          "keyCode": 5,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "G"
+        },
+        {
+          "keyCode": 4,
+          "modifiers": [],
+          "text": "h"
+        },
+        {
+          "keyCode": 4,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "H"
+        },
+        {
+          "keyCode": 38,
+          "modifiers": [],
+          "text": "j"
+        },
+        {
+          "keyCode": 38,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "J"
+        },
+        {
+          "keyCode": 40,
+          "modifiers": [],
+          "text": "k"
+        },
+        {
+          "keyCode": 40,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "K"
+        },
+        {
+          "keyCode": 37,
+          "modifiers": [],
+          "text": "l"
+        },
+        {
+          "keyCode": 37,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "L"
+        },
+        {
+          "keyCode": 41,
+          "modifiers": [],
+          "text": ";"
+        },
+        {
+          "keyCode": 41,
+          "modifiers": [
+            "shift"
+          ],
+          "text": ";"
+        },
+        {
+          "keyCode": 39,
+          "modifiers": [],
+          "text": "'"
+        },
+        {
+          "keyCode": 39,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "'"
+        },
+        {
+          "keyCode": 6,
+          "modifiers": [],
+          "text": "z"
+        },
+        {
+          "keyCode": 6,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Z"
+        },
+        {
+          "keyCode": 7,
+          "modifiers": [],
+          "text": "x"
+        },
+        {
+          "keyCode": 7,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "X"
+        },
+        {
+          "keyCode": 8,
+          "modifiers": [],
+          "text": "c"
+        },
+        {
+          "keyCode": 8,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "C"
+        },
+        {
+          "keyCode": 9,
+          "modifiers": [],
+          "text": "v"
+        },
+        {
+          "keyCode": 9,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "V"
+        },
+        {
+          "keyCode": 11,
+          "modifiers": [],
+          "text": "b"
+        },
+        {
+          "keyCode": 11,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "B"
+        },
+        {
+          "keyCode": 45,
+          "modifiers": [],
+          "text": "n"
+        },
+        {
+          "keyCode": 45,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "N"
+        },
+        {
+          "keyCode": 46,
+          "modifiers": [],
+          "text": "m"
+        },
+        {
+          "keyCode": 46,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "M"
+        },
+        {
+          "keyCode": 43,
+          "modifiers": [],
+          "text": ","
+        },
+        {
+          "keyCode": 43,
+          "modifiers": [
+            "shift"
+          ],
+          "text": ","
+        },
+        {
+          "keyCode": 47,
+          "modifiers": [],
+          "text": "."
+        },
+        {
+          "keyCode": 47,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "."
+        },
+        {
+          "keyCode": 44,
+          "modifiers": [],
+          "text": "/"
+        },
+        {
+          "keyCode": 44,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "/"
+        },
+        {
+          "keyCode": 18,
+          "modifiers": [],
+          "text": "1"
+        },
+        {
+          "keyCode": 19,
+          "modifiers": [],
+          "text": "2"
+        },
+        {
+          "keyCode": 20,
+          "modifiers": [],
+          "text": "3"
+        },
+        {
+          "keyCode": 21,
+          "modifiers": [],
+          "text": "4"
+        },
+        {
+          "keyCode": 23,
+          "modifiers": [],
+          "text": "5"
+        },
+        {
+          "keyCode": 22,
+          "modifiers": [],
+          "text": "6"
+        },
+        {
+          "keyCode": 26,
+          "modifiers": [],
+          "text": "7"
+        },
+        {
+          "keyCode": 28,
+          "modifiers": [],
+          "text": "8"
+        },
+        {
+          "keyCode": 25,
+          "modifiers": [],
+          "text": "9"
+        },
+        {
+          "keyCode": 29,
+          "modifiers": [],
+          "text": "0"
+        }
+      ]
+    },
+    {
+      "sourceID": "fixture.ru",
+      "entries": [
+        {
+          "keyCode": 12,
+          "modifiers": [],
+          "text": "й"
+        },
+        {
+          "keyCode": 12,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Й"
+        },
+        {
+          "keyCode": 13,
+          "modifiers": [],
+          "text": "ц"
+        },
+        {
+          "keyCode": 13,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ц"
+        },
+        {
+          "keyCode": 14,
+          "modifiers": [],
+          "text": "у"
+        },
+        {
+          "keyCode": 14,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "У"
+        },
+        {
+          "keyCode": 15,
+          "modifiers": [],
+          "text": "к"
+        },
+        {
+          "keyCode": 15,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "К"
+        },
+        {
+          "keyCode": 17,
+          "modifiers": [],
+          "text": "е"
+        },
+        {
+          "keyCode": 17,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Е"
+        },
+        {
+          "keyCode": 16,
+          "modifiers": [],
+          "text": "н"
+        },
+        {
+          "keyCode": 16,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Н"
+        },
+        {
+          "keyCode": 32,
+          "modifiers": [],
+          "text": "г"
+        },
+        {
+          "keyCode": 32,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Г"
+        },
+        {
+          "keyCode": 34,
+          "modifiers": [],
+          "text": "ш"
+        },
+        {
+          "keyCode": 34,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ш"
+        },
+        {
+          "keyCode": 31,
+          "modifiers": [],
+          "text": "щ"
+        },
+        {
+          "keyCode": 31,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Щ"
+        },
+        {
+          "keyCode": 35,
+          "modifiers": [],
+          "text": "з"
+        },
+        {
+          "keyCode": 35,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "З"
+        },
+        {
+          "keyCode": 33,
+          "modifiers": [],
+          "text": "х"
+        },
+        {
+          "keyCode": 33,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Х"
+        },
+        {
+          "keyCode": 30,
+          "modifiers": [],
+          "text": "ъ"
+        },
+        {
+          "keyCode": 30,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ъ"
+        },
+        {
+          "keyCode": 0,
+          "modifiers": [],
+          "text": "ф"
+        },
+        {
+          "keyCode": 0,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ф"
+        },
+        {
+          "keyCode": 1,
+          "modifiers": [],
+          "text": "ы"
+        },
+        {
+          "keyCode": 1,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ы"
+        },
+        {
+          "keyCode": 2,
+          "modifiers": [],
+          "text": "в"
+        },
+        {
+          "keyCode": 2,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "В"
+        },
+        {
+          "keyCode": 3,
+          "modifiers": [],
+          "text": "а"
+        },
+        {
+          "keyCode": 3,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "А"
+        },
+        {
+          "keyCode": 5,
+          "modifiers": [],
+          "text": "п"
+        },
+        {
+          "keyCode": 5,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "П"
+        },
+        {
+          "keyCode": 4,
+          "modifiers": [],
+          "text": "р"
+        },
+        {
+          "keyCode": 4,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Р"
+        },
+        {
+          "keyCode": 38,
+          "modifiers": [],
+          "text": "о"
+        },
+        {
+          "keyCode": 38,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "О"
+        },
+        {
+          "keyCode": 40,
+          "modifiers": [],
+          "text": "л"
+        },
+        {
+          "keyCode": 40,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Л"
+        },
+        {
+          "keyCode": 37,
+          "modifiers": [],
+          "text": "д"
+        },
+        {
+          "keyCode": 37,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Д"
+        },
+        {
+          "keyCode": 41,
+          "modifiers": [],
+          "text": "ж"
+        },
+        {
+          "keyCode": 41,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ж"
+        },
+        {
+          "keyCode": 39,
+          "modifiers": [],
+          "text": "э"
+        },
+        {
+          "keyCode": 39,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Э"
+        },
+        {
+          "keyCode": 6,
+          "modifiers": [],
+          "text": "я"
+        },
+        {
+          "keyCode": 6,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Я"
+        },
+        {
+          "keyCode": 7,
+          "modifiers": [],
+          "text": "ч"
+        },
+        {
+          "keyCode": 7,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ч"
+        },
+        {
+          "keyCode": 8,
+          "modifiers": [],
+          "text": "с"
+        },
+        {
+          "keyCode": 8,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "С"
+        },
+        {
+          "keyCode": 9,
+          "modifiers": [],
+          "text": "м"
+        },
+        {
+          "keyCode": 9,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "М"
+        },
+        {
+          "keyCode": 11,
+          "modifiers": [],
+          "text": "и"
+        },
+        {
+          "keyCode": 11,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "И"
+        },
+        {
+          "keyCode": 45,
+          "modifiers": [],
+          "text": "т"
+        },
+        {
+          "keyCode": 45,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Т"
+        },
+        {
+          "keyCode": 46,
+          "modifiers": [],
+          "text": "ь"
+        },
+        {
+          "keyCode": 46,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ь"
+        },
+        {
+          "keyCode": 43,
+          "modifiers": [],
+          "text": "б"
+        },
+        {
+          "keyCode": 43,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Б"
+        },
+        {
+          "keyCode": 47,
+          "modifiers": [],
+          "text": "ю"
+        },
+        {
+          "keyCode": 47,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "Ю"
+        },
+        {
+          "keyCode": 44,
+          "modifiers": [],
+          "text": "."
+        },
+        {
+          "keyCode": 44,
+          "modifiers": [
+            "shift"
+          ],
+          "text": "."
+        },
+        {
+          "keyCode": 18,
+          "modifiers": [],
+          "text": "1"
+        },
+        {
+          "keyCode": 19,
+          "modifiers": [],
+          "text": "2"
+        },
+        {
+          "keyCode": 20,
+          "modifiers": [],
+          "text": "3"
+        },
+        {
+          "keyCode": 21,
+          "modifiers": [],
+          "text": "4"
+        },
+        {
+          "keyCode": 23,
+          "modifiers": [],
+          "text": "5"
+        },
+        {
+          "keyCode": 22,
+          "modifiers": [],
+          "text": "6"
+        },
+        {
+          "keyCode": 26,
+          "modifiers": [],
+          "text": "7"
+        },
+        {
+          "keyCode": 28,
+          "modifiers": [],
+          "text": "8"
+        },
+        {
+          "keyCode": 25,
+          "modifiers": [],
+          "text": "9"
+        },
+        {
+          "keyCode": 29,
+          "modifiers": [],
+          "text": "0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+name: Swift
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-release-build:
+    runs-on: macos-15-intel
+    steps:
+      - name: Check out source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Show toolchain versions
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Run tests
+        run: swift test
+      - name: Build release executable
+        run: swift build -c release
+      - name: Cross-build arm64 release
+        run: swift build -c release --arch arm64
